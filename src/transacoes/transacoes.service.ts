@@ -57,29 +57,37 @@ export class TransacoesService {
   }
 
   async listar() {
-    const transacoes = await this.transacaoModel.find().sort({ createdAt: -1 }).exec();
+  const historico = await this.transacaoModel
+    .find()
+    .sort({ createdAt: -1 })
+    .exec();
 
-    const receitas = transacoes
-      .filter((transacao) => transacao.tipo === 'receita')
-      .reduce((total, transacao) => total + transacao.valor, 0);
+  const receitas = historico
+    .filter((transacao) => transacao.tipo === 'receita')
+    .reduce((total, transacao) => total + transacao.valor, 0);
 
-    const despesas = transacoes
-      .filter((transacao) => transacao.tipo === 'despesa')
-      .reduce((total, transacao) => total + transacao.valor, 0);
+  const totalDespesas = historico
+    .filter((transacao) => transacao.tipo === 'despesa')
+    .reduce((total, transacao) => total + transacao.valor, 0);
 
-    const gastosPorImpulso = transacoes
-      .filter(
-        (transacao) =>
-          transacao.tipo === 'despesa' &&
-          transacao.consumoConsciente === false,
-      )
-      .reduce((total, transacao) => total + transacao.valor, 0);
+  const totalGastoImpulso = historico
+    .filter(
+      (transacao) =>
+        transacao.tipo === 'despesa' &&
+        transacao.consumoConsciente === false,
+    )
+    .reduce((total, transacao) => total + transacao.valor, 0);
 
-    return {
-      transacoes,
-      saldoTotal: Number((receitas - despesas).toFixed(2)),
-      totalDespesas: Number(despesas.toFixed(2)),
-      totalGastoImpulso: Number(gastosPorImpulso.toFixed(2)),
-    };
-  }
+  const saldoTotal = receitas - totalDespesas;
+
+  return {
+    historico,
+    metricas: {
+      saldoTotal,
+      totalDespesas,
+      totalGastoImpulso,
+    },
+  };
+}
+
 }
