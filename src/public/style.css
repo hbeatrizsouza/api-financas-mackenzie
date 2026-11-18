@@ -1,0 +1,208 @@
+
+/* Configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #263238;
+    line-height: 1.5;
+}
+
+/* Cabeçalho */
+.topo {
+    background-color: #173b35;
+    color: white;
+    padding: 28px 20px;
+    text-align: center;
+}
+
+.topo h1 {
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.topo p {
+    font-size: 14px;
+    color: #dce8e3;
+}
+
+/* Conteúdo principal */
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 16px;
+}
+
+section {
+    margin-bottom: 28px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #173b35;
+}
+
+/* Cartões do dashboard */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dashboard h2 {
+    margin-bottom: 4px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 5px solid #2f806b;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card h3 {
+    font-size: 14px;
+    color: #68777a;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #173b35;
+}
+
+.card.impulso {
+    border-left-color: #d94343;
+}
+
+.card.impulso p {
+    color: #d94343;
+}
+
+/* Formulário */
+.formulario,
+.historico {
+    background-color: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d5dcda;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: white;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid #2f806b;
+    border-color: transparent;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+    font-weight: normal;
+}
+
+.checkbox input {
+    width: 18px;
+    height: 18px;
+}
+
+/* Botão */
+button {
+    background-color: #246b58;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+button:hover {
+    background-color: #174b3e;
+}
+
+/* Histórico */
+#listaTransacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.transacao {
+    padding: 14px;
+    border-bottom: 1px solid #e5e9e7;
+}
+
+.transacao p {
+    font-size: 14px;
+    color: #68777a;
+}
+
+.transacao strong {
+    color: #263238;
+}
+
+/* Rodapé */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #68777a;
+    font-size: 13px;
+}
+
+/* Adaptação para telas maiores */
+@media (min-width: 650px) {
+    .container {
+        padding: 30px 24px;
+    }
+
+    .dashboard {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .dashboard h2 {
+        grid-column: 1 / -1;
+    }
+
+    .card {
+        min-width: 0;
+    }
+
+    .topo h1 {
+        font-size: 32px;
+    }
+}
